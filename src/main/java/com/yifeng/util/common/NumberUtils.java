@@ -1,7 +1,5 @@
 package com.yifeng.util.common;
 
-import com.sun.deploy.util.SystemUtils;
-
 /**
  * @Description:
  * @author: lijun
