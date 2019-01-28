@@ -158,9 +158,11 @@ public class CollectionUtils {
 
     public static <T> List<T> newList(T t) {
         List<T> list = new ArrayList<>();
+
         if(t == null) {
             return list;
         }
+
         list.add(t);
         return list;
     }
