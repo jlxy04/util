@@ -156,21 +156,17 @@ public class CollectionUtils {
         }
     }
 
+    public static <T> List<T> newList(T t) {
+        List<T> list = new ArrayList<>();
+        if(t == null) {
+            return list;
+        }
+        list.add(t);
+        return list;
+    }
+
     public static void main(String[] args) {
-        List<String> list = new ArrayList<String>();
-        list.add("xxxxxxxx");
-        list.add("dfasfadsfdsaf");
-        list.add("23fdsfasfasdf");
-        list.add("23fdsfasfasdfx");
-        System.out.println(list);
-        filter(list, new Filter<String>() {
-            public boolean evaluate(String s) {
-                if(s.indexOf("x") != -1) {
-                    return false;
-                }
-                return true;
-            }
-        });
-        System.out.println(list);
+        List<String> ss = newList("xxx");
+        System.out.println(ss);
     }
 }
