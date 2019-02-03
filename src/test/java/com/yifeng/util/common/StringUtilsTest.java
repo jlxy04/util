@@ -136,11 +136,102 @@ public class StringUtilsTest {
         Assert.assertEquals(StringUtils.trimToEmpty(null), "");
     }
 
+    /**
+     * to substring(final String str, int start)
+     */
     @Test
     public void substring() {
         // substring("abcdefg", 1) = bcdefg
         Assert.assertEquals(StringUtils.substring("abcdefg", 1), "bcdefg");
 
-        System.out.println(StringUtils.substring("abcdefg", 1));
+        // substring("abcdefg", 0) = abcdefg
+        Assert.assertEquals(StringUtils.substring("abcdefg", 0), "abcdefg");
+
+        // substring("abcdefg", -1) = g
+        Assert.assertEquals(StringUtils.substring("abcdefg", -1), "g");
+
+        // substring("abcdefg", -10) = abcdefg
+        Assert.assertEquals(StringUtils.substring("abcdefg", -10), "abcdefg");
+
+        // substring(null, 1) = null
+        Assert.assertNull(StringUtils.substring(null, 1));
+
+        // substring("abcdefg", "abcdefg".length()) = ""
+        Assert.assertEquals(StringUtils.substring("abcdefg", "abcdefg".length()), "");
+
+        // substring("abcdefg", 20) = ""
+        Assert.assertEquals(StringUtils.substring("abcdefg", 20), "");
+    }
+
+    /**
+     * to substring(final String str, int start, int end)
+     */
+    @Test
+    public void substring2() {
+        // substring("abcdefg", 1, 2) = bcdefg
+        Assert.assertEquals(StringUtils.substring("abcdefg", 1, 2), "b");
+
+        // substring("abcdefg", 0, 1) = a
+        Assert.assertEquals(StringUtils.substring("abcdefg", 0, 1), "a");
+
+        // substring("abcdefg", -1, 1) = ""
+        Assert.assertEquals(StringUtils.substring("abcdefg", -1, 1), "");
+
+        // substring(null, 1, 3) = null
+        Assert.assertNull(StringUtils.substring(null, 1, 3));
+
+        // substring("abcdefg", "abcdefg".length(), "abcdefg".length()) = ""
+        Assert.assertEquals(StringUtils.substring("abcdefg", "abcdefg".length(), "abcdefg".length()), "");
+
+        // substring("abcdefg", 20) = ""
+        Assert.assertEquals(StringUtils.substring("abcdefg", 10, 20), "");
+    }
+
+    @Test
+    public void left() {
+        // left("abcdefg", 1) = a
+        Assert.assertEquals(StringUtils.left("abcdefg", 1), "a");
+
+        // left("abcdefg", -1) = ""
+        Assert.assertEquals(StringUtils.left("abcdefg", -1), "");
+
+        // left("abcdefg", 0) = ""
+        Assert.assertEquals(StringUtils.left("abcdefg", 0), "");
+
+        // left("abcdefg", 10) = "abcdefg"
+        Assert.assertEquals(StringUtils.left("abcdefg", 10), "abcdefg");
+
+        // left("", 2) = ""
+        Assert.assertEquals(StringUtils.left("", 2), "");
+
+        // left(null, 2) = ""
+        Assert.assertNull(StringUtils.left(null, 2));
+    }
+
+    @Test
+    public void right() {
+        // right("abcdefg", 1) = g
+        Assert.assertEquals(StringUtils.right("abcdefg", 1), "g");
+
+        // right("abcdefg", -1) = ""
+        Assert.assertEquals(StringUtils.right("abcdefg", -1), "");
+
+        // right("abcdefg", 0) = ""
+        Assert.assertEquals(StringUtils.right("abcdefg", 0), "");
+
+        // right("abcdefg", 10) = "abcdefg"
+        Assert.assertEquals(StringUtils.right("abcdefg", 10), "abcdefg");
+
+        // right("", 2) = ""
+        Assert.assertEquals(StringUtils.right("", 2), "");
+
+        // right(null, 2) = ""
+        Assert.assertNull(StringUtils.right(null, 2));
+    }
+
+    @Test
+    public void rightPad() {
+        // rightPad("xxx", 5) = "xxx  "
+        Assert.assertEquals(StringUtils.rightPad("xxx", 5), "xxx  ");
     }
 }

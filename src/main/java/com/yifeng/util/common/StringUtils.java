@@ -17,22 +17,39 @@ public class StringUtils {
     private StringUtils() {}
 
     /**
-     * 判断字符是否为空
-     * @param cs
-     * @return
+     * <p>判断字符是否为空</p>
+     *
+     *  <pre>
+     *  isEmpty("") == true
+     *  isEmpty(" ") == false
+     *  isEmpty("xxx") == false
+     *  isEmpty("  xxx  ") == false
+     *  isEmpty(null) == true
+     *  </pre>
+     *
+     * @param cs 字符串
+     * @return boolean
      */
     public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
     }
 
     /**
-     * 判断字符是否不为空
+     * <p>判断字符是否不为空</p>
+     * <pre>
+     *  isNotEmpty("") == false
+     *  isNotEmpty(" ") == true
+     *  isNotEmpty("xxx") == true
+     *  isNotEmpty("  xxx  ") == true
+     *  isNotEmpty(null) == false
+     * </pre>
      * @param cs
      * @return
      */
     public static boolean isNotEmpty(final CharSequence cs) {
         return !isEmpty(cs);
     }
+
 
     public static boolean isBlank(final CharSequence cs) {
         int strLen;
