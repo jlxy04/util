@@ -1,7 +1,5 @@
 package com.yifeng.util.collection;
 
-import com.yifeng.util.common.Filter;
-
 import java.util.*;
 
 /**

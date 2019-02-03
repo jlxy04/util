@@ -1,9 +1,10 @@
 package com.yifeng.util.common;
 
 /**
- * @Description:
+ * @description: 字符串常用工具类
  * @author: lijun
- * @Date: 2019-1-18 14:52
+ * @date: 2019-1-18 14:52
+ * @since 1.0.0
  */
 public class StringUtils {
 
@@ -15,10 +16,20 @@ public class StringUtils {
 
     private StringUtils() {}
 
+    /**
+     * 判断字符是否为空
+     * @param cs
+     * @return
+     */
     public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
     }
 
+    /**
+     * 判断字符是否不为空
+     * @param cs
+     * @return
+     */
     public static boolean isNotEmpty(final CharSequence cs) {
         return !isEmpty(cs);
     }

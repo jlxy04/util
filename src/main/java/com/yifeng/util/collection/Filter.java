@@ -1,4 +1,4 @@
-package com.yifeng.util.common;
+package com.yifeng.util.collection;
 
 /**
  * @Description:
