@@ -143,13 +143,13 @@ public class StringUtils {
     /**
      * <p> 字符串截取 </p>
      * <pre>
-     *     substring("abcdefg", 1) = bcdefg
-     *     substring("abcdefg", 0) = abcdefg
-     *     substring("abcdefg", -1) = g
-     *     substring("abcdefg", -10) = abcdefg
-     *     substring(null, 1) = null
-     *     substring("abcdefg", "abcdefg".length()) = ""
-     *     substring("abcdefg", 20) = ""
+     *     substring("abcdefg", 1) == bcdefg
+     *     substring("abcdefg", 0) == abcdefg
+     *     substring("abcdefg", -1) == g
+     *     substring("abcdefg", -10) == abcdefg
+     *     substring(null, 1) == null
+     *     substring("abcdefg", "abcdefg".length()) == ""
+     *     substring("abcdefg", 20) == ""
      * </pre>
      * @param str
      * @param start
@@ -177,12 +177,12 @@ public class StringUtils {
     /**
      * <p>字符串截取</p>
      * <pre>
-     *     substring("abcdefg", 1, 2) = bcdefg
-     *     substring("abcdefg", 0, 1) = a
-     *     substring("abcdefg", -1, 1) = ""
-     *     substring(null, 1, 3) = null
-     *     substring("abcdefg", "abcdefg".length(), "abcdefg".length()) = ""
-     *     substring("abcdefg", 20) = ""
+     *     substring("abcdefg", 1, 2) == bcdefg
+     *     substring("abcdefg", 0, 1) == a
+     *     substring("abcdefg", -1, 1) == ""
+     *     substring(null, 1, 3) == null
+     *     substring("abcdefg", "abcdefg".length(), "abcdefg".length()) == ""
+     *     substring("abcdefg", 20) == ""
      * </pre>
      * @param str
      * @param start
@@ -222,12 +222,12 @@ public class StringUtils {
     /**
      * <p>字符串从左边开始截取</p>
      * <pre>
-     * left("abcdefg", 1) = a
-     * left("abcdefg", -1) = ""
-     * left("abcdefg", 0) = ""
-     * left("abcdefg", 10) = "abcdefg"
-     * left("", 2) = ""
-     * left(null, 2) = ""
+     * left("abcdefg", 1) == a
+     * left("abcdefg", -1) == ""
+     * left("abcdefg", 0) == ""
+     * left("abcdefg", 10) == "abcdefg"
+     * left("", 2) == ""
+     * left(null, 2) == ""
      * </pre>
      * @param str
      * @param len
@@ -249,12 +249,12 @@ public class StringUtils {
     /**
      * <p>字符串从右边开始截取</p>
      * <pre>
-     *  right("abcdefg", 1) = g
-     *  right("abcdefg", -1) = ""
-     *  right("abcdefg", 0) = ""
-     *  right("abcdefg", 10) = "abcdefg"
-     *  right("", 2) = ""
-     *  right(null, 2) = ""
+     *  right("abcdefg", 1) == g
+     *  right("abcdefg", -1) == ""
+     *  right("abcdefg", 0) == ""
+     *  right("abcdefg", 10) == "abcdefg"
+     *  right("", 2) == ""
+     *  right(null, 2) == ""
      * </pre>
      * @param str
      * @param len
@@ -273,10 +273,32 @@ public class StringUtils {
         return str.substring(str.length() - len);
     }
 
+    /**
+     * <p>字符串补全右边达到指定的位数，默认补空格</p>
+     * <pre>
+     *     rightPad("xxx", 5) == "xxx  "
+     *     rightPad(" xxx", 5) == " xxx "
+     * </pre>
+     * @param str
+     * @param size 总位数
+     * @return
+     */
     public static String rightPad(final String str, final int size) {
         return rightPad(str, size, ' ');
     }
 
+    /**
+     * <p>字符串右补全</p>
+     * <pre>
+     *  rightPad("xxx", 5, 'a') == "xxxaa"
+     *  rightPad(" xxx", 5, 'b') == " xxxb"
+     *  rightPad(" xxx", 5, null) == " xxx "
+     * </pre>
+     * @param str
+     * @param size 总位数
+     * @param padChar 需要补的字符
+     * @return
+     */
     public static String rightPad(final String str, final int size, final char padChar) {
         if (str == null) {
             return null;
@@ -291,7 +313,7 @@ public class StringUtils {
         return str.concat(repeat(padChar, pads));
     }
 
-    public static String repeat(final char ch, final int repeat) {
+    private static String repeat(final char ch, final int repeat) {
         if (repeat <= 0) {
             return EMPTY;
         }
@@ -302,6 +324,18 @@ public class StringUtils {
         return new String(buf);
     }
 
+    /**
+     * <p>右边右补全</p>
+     * <pre>
+     * rightPad("xxx", 5, "abc") == "xxxab"
+     * rightPad(" xxx", 5, "b") == " xxxb"
+     * rightPad(" xxx", 5, null) == " xxx "
+     * </pre>
+     * @param str
+     * @param size
+     * @param padStr
+     * @return
+     */
     public static String rightPad(final String str, final int size, String padStr) {
         if (str == null) {
             return null;
@@ -333,10 +367,32 @@ public class StringUtils {
         }
     }
 
+    /**
+     * <p>字符串左边补全</p>
+     * <pre>
+     * leftPad("xxx", 5) == "  xxx"
+     * leftPad("xxx ", 5) == " xxx "
+     * </pre>
+     * @param str
+     * @param size 补全后的长度
+     * @return
+     */
     public static String leftPad(final String str, final int size) {
         return leftPad(str, size, ' ');
     }
 
+    /**
+     * <p>左边补全</p>
+     * <pre>
+     * leftPad("xxx", 5, 'a') == "aaxxx"
+     * leftPad("xxx ", 5, 'b') == "bxxx "
+     * leftPad("xxx ", 5, null) == " xxx "
+     * </pre>
+     * @param str
+     * @param size 补全后的长度
+     * @param padChar 需要补全的字符
+     * @return
+     */
     public static String leftPad(final String str, final int size, final char padChar) {
         if (str == null) {
             return null;
@@ -351,6 +407,18 @@ public class StringUtils {
         return repeat(padChar, pads).concat(str);
     }
 
+    /**
+     * <p>字符串补全</p>
+     * <pre>
+     *     leftPad("xxx", 5, "abc") == "abxxx"
+     *     leftPad("xxx ", 5, "b") == "bxxx "
+     *     leftPad("xxx ", 5, null) == " xxx "
+     * </pre>
+     * @param str
+     * @param size
+     * @param padStr
+     * @return
+     */
     public static String leftPad(final String str, final int size, String padStr) {
         if (str == null) {
             return null;
@@ -382,6 +450,16 @@ public class StringUtils {
         }
     }
 
+    /**
+     * <p>删除空格</p>
+     * <pre>
+     *     deleteWhitespace(" ") == ""
+     *     deleteWhitespace(" abc ") == "abc"
+     *     deleteWhitespace(" a b c ") == "abc"
+     * </pre>
+     * @param str
+     * @return
+     */
     public static String deleteWhitespace(final String str) {
         if (isEmpty(str)) {
             return str;
