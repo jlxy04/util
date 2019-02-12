@@ -233,5 +233,8 @@ public class StringUtilsTest {
     public void rightPad() {
         // rightPad("xxx", 5) = "xxx  "
         Assert.assertEquals(StringUtils.rightPad("xxx", 5), "xxx  ");
+
+        // rightPad(" xxx", 5) = " xxx "
+        Assert.assertEquals(StringUtils.rightPad(" xxx", 5), " xxx ");
     }
 }

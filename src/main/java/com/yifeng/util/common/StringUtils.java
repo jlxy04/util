@@ -50,7 +50,18 @@ public class StringUtils {
         return !isEmpty(cs);
     }
 
-
+    /**
+     * <p> 是否为空白 <p/>
+     * <pre>
+     *   isBlank("") == true
+     *   isBlank(" ") == true
+     *   isBlank("xxx") == false
+     *   isBlank("  xxx  ") == false
+     *   isBlank(null) == true
+     * </pre>
+     * @param cs
+     * @return
+     */
     public static boolean isBlank(final CharSequence cs) {
         int strLen;
         if (cs == null || (strLen = cs.length()) == 0) {
@@ -64,23 +75,86 @@ public class StringUtils {
         return true;
     }
 
+    /**
+     * <p> 是否不为空白 <p/>
+     * <pre>
+     *   isBlank("") == false
+     *   isBlank(" ") == false
+     *   isBlank("xxx") == true
+     *   isBlank("  xxx  ") == true
+     *   isBlank(null) == false
+     * </pre>
+     * @param cs
+     * @return
+     */
     public static boolean isNotBlank(final CharSequence cs) {
         return !isBlank(cs);
     }
 
+    /**
+     * <p> 去除前后空格 <p/>
+     * <pre>
+     *  trim("") == ""
+     *  trim(" ") == ""
+     *  trim("xxx") == "xxx"
+     *  trim("  xxx  ") == "xxx"
+     *  trim(null) == null
+     * </pre>
+     * @param str
+     * @return
+     */
     public static String trim(final String str) {
         return str == null ? null : str.trim();
     }
 
+    /**
+     * <p> 去除前后空格，如果为空则为null <p/>
+     * <pre>
+     *  trimToNull("") == null
+     *  trimToNull("xxx") == xxx
+     *  trimToNull(" xxx ") == xxx
+     *  trimToNull("  ") == null
+     *  trimToNull(null) == null
+     * </pre>
+     * @param str
+     * @return
+     */
     public static String trimToNull(final String str) {
         final String ts = trim(str);
         return isEmpty(ts) ? null : ts;
     }
 
+    /**
+     * <p> 去除前后空格，如果为空则为null <p/>
+     * <pre>
+     *  trimToEmpty("") == ""
+     *  trimToEmpty("xxx") == xxx
+     *  trimToEmpty(" xxx ") == xxx
+     *  trimToEmpty("  ") == ""
+     *  trimToEmpty(null) == ""
+     * </pre>
+     * @param str
+     * @return
+     */
     public static String trimToEmpty(final String str) {
         return str == null ? EMPTY : str.trim();
     }
 
+    /**
+     * <p> 字符串截取 </p>
+     * <pre>
+     *     substring("abcdefg", 1) = bcdefg
+     *     substring("abcdefg", 0) = abcdefg
+     *     substring("abcdefg", -1) = g
+     *     substring("abcdefg", -10) = abcdefg
+     *     substring(null, 1) = null
+     *     substring("abcdefg", "abcdefg".length()) = ""
+     *     substring("abcdefg", 20) = ""
+     * </pre>
+     * @param str
+     * @param start
+     * @return
+     */
     public static String substring(final String str, int start) {
         if (str == null) {
             return null;
@@ -100,6 +174,21 @@ public class StringUtils {
         return str.substring(start);
     }
 
+    /**
+     * <p>字符串截取</p>
+     * <pre>
+     *     substring("abcdefg", 1, 2) = bcdefg
+     *     substring("abcdefg", 0, 1) = a
+     *     substring("abcdefg", -1, 1) = ""
+     *     substring(null, 1, 3) = null
+     *     substring("abcdefg", "abcdefg".length(), "abcdefg".length()) = ""
+     *     substring("abcdefg", 20) = ""
+     * </pre>
+     * @param str
+     * @param start
+     * @param end
+     * @return
+     */
     public static String substring(final String str, int start, int end) {
         if (str == null) {
             return null;
@@ -130,6 +219,20 @@ public class StringUtils {
         return str.substring(start, end);
     }
 
+    /**
+     * <p>字符串从左边开始截取</p>
+     * <pre>
+     * left("abcdefg", 1) = a
+     * left("abcdefg", -1) = ""
+     * left("abcdefg", 0) = ""
+     * left("abcdefg", 10) = "abcdefg"
+     * left("", 2) = ""
+     * left(null, 2) = ""
+     * </pre>
+     * @param str
+     * @param len
+     * @return
+     */
     public static String left(final String str, final int len) {
         if (str == null) {
             return null;
@@ -143,6 +246,20 @@ public class StringUtils {
         return str.substring(0, len);
     }
 
+    /**
+     * <p>字符串从右边开始截取</p>
+     * <pre>
+     *  right("abcdefg", 1) = g
+     *  right("abcdefg", -1) = ""
+     *  right("abcdefg", 0) = ""
+     *  right("abcdefg", 10) = "abcdefg"
+     *  right("", 2) = ""
+     *  right(null, 2) = ""
+     * </pre>
+     * @param str
+     * @param len
+     * @return
+     */
     public static String right(final String str, final int len) {
         if (str == null) {
             return null;
