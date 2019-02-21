@@ -21,17 +21,36 @@ public class DateTimeUtils {
 
     private static final String EMPTY = "";
 
-    private static final String[] FORMART_PATTERNS = {"yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmss"};
+    private static final String[] FORMAT_PATTERNS = {"yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmss"};
 
     private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     private DateTimeUtils() {}
 
+    /**
+     * <p>格式化字符串，默认格式 yyyy-MM-dd HH:mm:ss </p>
+     * <pre>
+     *  formatDate(null) throw IllegalArgumentException
+     *  formatDate(date) == "2019-02-10 23:12:10"
+     * </pre>
+     * @param date
+     * @return
+     */
     public static String formatDate(final Date date) {
         return formatDate(date, DEFAULT_PATTERN);
 
     }
 
+    /**
+     * <p>格式化日期</p>
+     * <pre>
+     * formatDate(date, "yyyy/MM/dd HH:mm:ss") = "2019/02/10 23:12:10"
+     * formatDate(date, "abc") throw IllegalArgumentException(Illegal pattern)
+     * </pre>
+     * @param date
+     * @param pattern 格式字符
+     * @return
+     */
     public static String formatDate(final Date date, final String pattern) {
         if (date == null || pattern == null) {
             throw new IllegalArgumentException("Date and Patterns must not be null");
@@ -40,8 +59,17 @@ public class DateTimeUtils {
         return new SimpleDateFormat(pattern).format(date);
     }
 
-    public static Date parseDate(final String str) throws ParseException {
-        return parseDate(str, null, FORMART_PATTERNS);
+    /**
+     * <p>解析日期，默认支持的格式为："yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmss"</p>
+     * <pre>
+     *
+     * </pre>
+     * @param str
+     * @return
+     * @throws ParseException
+     */
+    public static Date parseDate(final String str) {
+        return parseDate(str, null, FORMAT_PATTERNS);
     }
 
     public static Date parseDate(final String str, final String... parsePatterns) {

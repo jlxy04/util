@@ -17,7 +17,21 @@ import java.io.OutputStream;
 import java.util.Hashtable;
 
 /**
- * @Description:
+ * @Description: 二维码生成
+ * 需要引入
+ *    <dependency>
+ *       <groupId>com.google.zxing</groupId>
+ *       <artifactId>core</artifactId>
+ *       <version>3.3.3</version>
+ *       <scope>provided</scope>
+ *    </dependency>
+ *
+ *    <dependency>
+ *      <groupId>com.google.zxing</groupId>
+ *      <artifactId>javase</artifactId>
+ *      <version>3.3.3</version>
+ *      <scope>provided</scope>
+ *    </dependency>
  * @author: lijun
  * @Date: 2019-1-21 15:02
  */
