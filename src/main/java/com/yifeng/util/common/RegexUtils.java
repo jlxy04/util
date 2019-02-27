@@ -22,6 +22,17 @@ public class RegexUtils {
 
     private RegexUtils() {}
 
+    /**
+     * <p>字符串是否匹配表达式</p>
+     * <pre>
+     *     matcher("www.baidu.com", null) == true
+     *     matcher(null, "[a-z]{0,3}\\.[a-z]{0,3}") = false
+     *     matcher("www.baidu.com", "[a-z]{0,3}\\.[a-z]{0,3}") = true
+     * </pre>
+     * @param str
+     * @param express
+     * @return
+     */
     public static boolean matcher(String str, String express) {
         if(str == null) {
             return false;
@@ -36,6 +47,16 @@ public class RegexUtils {
         return m.find();
     }
 
+    /**
+     * <p>是否匹配邮箱地址</p>
+     * <pre>
+     *     matcherEmail(null) == false
+     *     matcherEmail("www.baidu.com") == false
+     *     matcherEmail("jlxy04@gmail.com") == true
+     * </pre>
+     * @param str
+     * @return
+     */
     public static boolean matcherEmail(String str) {
         return matcher(str, REGEX_EMIAL);
     }
@@ -67,11 +88,5 @@ public class RegexUtils {
             list.add(m.group());
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(matcherEmail("xxxx.fdfadf@qq.cc"));
-        System.out.println(matcherChinese("李四一"));
-        System.out.println(matcherUrl("https://www.baiud.com"));
     }
 }
