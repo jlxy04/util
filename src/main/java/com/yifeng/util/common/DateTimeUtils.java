@@ -72,10 +72,23 @@ public class DateTimeUtils {
         return parseDate(str, null, FORMAT_PATTERNS);
     }
 
+    /**
+     * <p>解析日期</p>
+     * @param str 日期字符串
+     * @param parsePatterns 格式数组，支持输入多个格式
+     * @return
+     */
     public static Date parseDate(final String str, final String... parsePatterns) {
         return parseDate(str, null, parsePatterns);
     }
 
+    /**
+     * <p>解析日期</p>
+     * @param str
+     * @param locale
+     * @param parsePatterns
+     * @return
+     */
     public static Date parseDate(final String str, final Locale locale, final String... parsePatterns) {
         try {
             return parseDateWithLeniency(str, locale, parsePatterns, true);
@@ -125,6 +138,17 @@ public class DateTimeUtils {
         throw new ParseException("Unable to parse the date: " + str, -1);
     }
 
+    /**
+     * <p>比较二个日期大小</p>
+     * <pre>
+     *     compareDate(new Date(), new Date()) == 0
+     *     compareDate(parseDate("2019-02-15 09:12:10"), parseDate("2019-02-27 09:12:10")) < 0
+     *     compareDate(parseDate("2030-02-15 09:12:10"), parseDate("2030-02-27 09:12:10")) > 0
+     * </pre>
+     * @param date1
+     * @param date2
+     * @return
+     */
     public static int compareDate(Date date1, Date date2) {
         if(date1 == null || date2 == null) {
             throw new IllegalArgumentException("date1 and date2 must not be null");
@@ -137,6 +161,17 @@ public class DateTimeUtils {
         return date1.getTime() > date2.getTime() ? 1 : -1;
     }
 
+    /**
+     * <p>比较日期中二个时间的大小</p>
+     * <pre>
+     *    compareTime(new Date(), new Date()) == 0
+     *    compareTime(parseDate("2019-02-15 09:12:10"), parseDate("2019-02-02 21:21:21")) < 0
+     *    compareTime(parseDate("2019-02-15 21:30:10"), parseDate("2019-02-02 21:21:21")) > 0
+     * </pre>
+     * @param date1
+     * @param date2
+     * @return
+     */
     public static int compareTime(Date date1, Date date2) {
         if(date1 == null || date2 == null) {
             throw new IllegalArgumentException("date1 and date2 must not be null");
@@ -174,6 +209,14 @@ public class DateTimeUtils {
         return 0;
     }
 
+    /**
+     * <p>日期转日历</p>
+     * <pre>
+     *     toCalendar(null) == null
+     * </pre>
+     * @param date
+     * @return
+     */
     public static Calendar toCalendar(Date date) {
         if(date == null) {
             return null;
@@ -184,34 +227,86 @@ public class DateTimeUtils {
         return calendar;
     }
 
+    /**
+     * <p>增加年份</p>
+     * <pre>
+     *     addYears(date, 1).getYear == 2020
+     *     addYears(date, -1).getYear = 2018
+     * </pre>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addYears(final Date date, final int amount) {
         return add(date, Calendar.YEAR, amount);
     }
 
+    /**
+     * <p>增加月份</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addMonths(final Date date, final int amount) {
         return add(date, Calendar.MONTH, amount);
     }
 
+    /**
+     * <p>增加周数</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addWeeks(final Date date, final int amount) {
         return add(date, Calendar.WEEK_OF_YEAR, amount);
     }
 
+    /**
+     * <p>增加天数</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addDays(final Date date, final int amount) {
         return add(date, Calendar.DAY_OF_MONTH, amount);
     }
 
+    /**
+     * <p>增加小时</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addHours(final Date date, final int amount) {
         return add(date, Calendar.HOUR_OF_DAY, amount);
     }
 
+    /**
+     * <p>增加分钟数</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addMinutes(final Date date, final int amount) {
         return add(date, Calendar.MINUTE, amount);
     }
 
+    /**
+     * <p>增加秒数</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addSeconds(final Date date, final int amount) {
         return add(date, Calendar.SECOND, amount);
     }
 
+    /**
+     * <p>增加毫秒数</p>
+     * @param date
+     * @param amount 正数为加, 负数为减
+     * @return
+     */
     public static Date addMilliseconds(final Date date, final int amount) {
         return add(date, Calendar.MILLISECOND, amount);
     }
