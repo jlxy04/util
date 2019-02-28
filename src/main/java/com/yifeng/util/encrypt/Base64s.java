@@ -11,13 +11,13 @@ import java.util.Base64;
  * @author: lijun
  * @Date: 2019-1-21 15:27
  */
-public class Base64Utils {
+public class Base64s {
 
     private static final String EMPTY = "";
 
     private static final org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
 
-    private Base64Utils() {}
+    private Base64s() {}
 
     public static byte[] encode(byte[] src) {
         if (src == null || src.length <= 0) {
@@ -84,6 +84,6 @@ public class Base64Utils {
     }
 
     private static boolean isJdkBase64() {
-        return ClassUtils.isPresent("java.util.Base64", Base64Utils.class.getClassLoader());
+        return ClassUtils.isPresent("java.util.Base64", Base64s.class.getClassLoader());
     }
 }

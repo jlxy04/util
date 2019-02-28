@@ -12,13 +12,13 @@ import java.security.NoSuchAlgorithmException;
  * @author: lijun
  * @Date: 2019-1-19 17:39
  */
-public class Md5Utils {
+public class Md5 {
 
     private static final String EMPTY = "";
 
     private static final String[] hexDigits = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
 
-    private Md5Utils() {}
+    private Md5() {}
 
     public static String md5(String str) {
         try {
