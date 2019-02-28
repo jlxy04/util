@@ -160,6 +160,7 @@ public class HttpUtils {
             HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
             httpsURLConnection.setSSLSocketFactory(sslContext.getSocketFactory());
             httpsURLConnection.setHostnameVerifier(new HostnameVerifier() {
+                @Override
                 public boolean verify(String s, SSLSession sslSession) {
                     return true;
                 }
