@@ -307,12 +307,12 @@ public class DateTimeUtilsTest {
 
         // 2019-02-15 09:12:10
         Date date2 = DateTimeUtils.addMinutes(date, 1);
-        int minutes = DateTimeUtils.toCalendar(date2).get(Calendar.HOUR_OF_DAY);
+        int minutes = DateTimeUtils.toCalendar(date2).get(Calendar.MINUTE);
         Assert.assertTrue(minutes == 13);
 
         // 2019-02-15 09:12:10
-        Date date3 = DateTimeUtils.addHours(date, -1);
-        int minutes2 = DateTimeUtils.toCalendar(date3).get(Calendar.HOUR_OF_DAY);
+        Date date3 = DateTimeUtils.addMinutes(date, -1);
+        int minutes2 = DateTimeUtils.toCalendar(date3).get(Calendar.MINUTE);
         Assert.assertTrue(minutes2 == 11);
     }
 

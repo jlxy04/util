@@ -121,7 +121,7 @@ public class StringUtilsTest {
     @Test
     public void trimToEmpty() {
         // trimToEmpty("") == ""
-        Assert.assertNull(StringUtils.trimToEmpty(""), "");
+        Assert.assertEquals(StringUtils.trimToEmpty(""), "");
 
         // trimToEmpty("xxx") == xxx
         Assert.assertEquals(StringUtils.trimToEmpty("xxx"), "xxx");
