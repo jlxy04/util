@@ -11,6 +11,6 @@ public class DigestUtilsTest {
 
     @Test
     public void md5Test() {
-        System.out.println(Md5Utils.md5("123456"));
+        System.out.println(Md5.md5("123456"));
     }
 }
