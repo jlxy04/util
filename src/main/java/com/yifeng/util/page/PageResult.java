@@ -77,9 +77,4 @@ public class PageResult<T> implements Serializable {
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
     }
-
-    public static void main(String[] args) {
-        PageResult<String> pr = new PageResult<>(130, Collections.emptyList(), 1, 10);
-        System.out.println(pr.getTotalPage());
-    }
 }
