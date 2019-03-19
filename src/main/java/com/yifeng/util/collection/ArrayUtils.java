@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Description:
+ * @Description: 数组操作类
  * @author: lijun
  * @Date: 2019-1-18 16:07
  */
@@ -17,6 +17,13 @@ public class ArrayUtils {
 
     private ArrayUtils() {}
 
+    /**
+     * <p> 往数组中增加新元素</p>
+     * @param array
+     * @param element
+     * @param <T>
+     * @return 返回增加后的新数组
+     */
     public static <T> T[] add(final T[] array, final T element) {
         Class<?> type;
         if (array != null){
