@@ -7,16 +7,14 @@ import org.slf4j.LoggerFactory;
 import javax.net.ssl.*;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -95,7 +93,8 @@ public class HttpUtils {
 
     private static String send(String url, HttpMehtod method, Map<String, String> heads, String body, int timeout) {
         String result = "";
-        BufferedReader in = null;
+        BufferedReader bufferedReader = null;
+        InputStream responseStream = null;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection httpURLConnection = null;
@@ -129,20 +128,34 @@ public class HttpUtils {
                 httpURLConnection.setRequestProperty("Content-Length", String.valueOf(b.length));
                 httpURLConnection.getOutputStream().write(b);
             }
+            int responseCode = httpURLConnection.getResponseCode();
 
-            httpURLConnection.connect();
-
-            in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                result += line;
+            // 处理2XX、3xx、4xx、5xx的响应码
+            if (responseCode < 400) {
+                responseStream = httpURLConnection.getInputStream();
+            } else if (responseCode >= 400) {
+                responseStream = httpURLConnection.getErrorStream();
+            }
+            if (responseStream != null) {
+                bufferedReader = new BufferedReader(new InputStreamReader(responseStream));
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
-            if (in != null) {
+            if (bufferedReader != null) {
                 try {
-                    in.close();
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (responseStream != null) {
+                try {
+                    responseStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
